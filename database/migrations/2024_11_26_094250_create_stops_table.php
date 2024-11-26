@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('stops', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('stops_order');
+            $table->integer('route_id')->references('id')->on('routes');;
             $table->timestamps();
         });
     }
