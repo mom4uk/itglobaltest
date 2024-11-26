@@ -17,35 +17,35 @@ class DatabaseSeeder extends Seeder
         // routes
 
         DB::table('routes')->insert([
-            'bus_id' => 1,
             'initial_stop_departure_time' => '2001-02-16 09:00:00',
             'final_stop_departure_time' => '2001-02-16 14:00:00'
         ]);
 
         DB::table('routes')->insert([
-            'bus_id' => 2,
             'initial_stop_departure_time' => '2001-02-16 10:00:00',
             'final_stop_departure_time' => '2001-02-16 15:00:00'
         ]);
 
         DB::table('routes')->insert([
-            'bus_id' => 3,
-            'initial_stop_departure_time' => '2001-02-16 08:30:00',
-            'final_stop_departure_time' => '2001-02-16 16:15:00'
+            'initial_stop_departure_time' => '2001-02-16 10:00:00',
+            'final_stop_departure_time' => '2001-02-16 15:00:00'
         ]);
 
         // buses
 
         DB::table('buses')->insert([
-            'number' => 12
+            'number' => 12,
+            'route_id' => 1
         ]);
 
         DB::table('buses')->insert([
-            'number' => 46
+            'number' => 46,
+            'route_id' => 1
         ]);
 
         DB::table('buses')->insert([
-            'number' => 7
+            'number' => 7,
+            'route_id' => 2
         ]);
 
         // stops
@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('stops')->insert([
-            'name' => 'ул.Демидова',
+            'name' => 'ул.Демидовича',
             'stops_order' => 4,
             'route_id' => 1
         ]);
@@ -171,6 +171,12 @@ class DatabaseSeeder extends Seeder
         DB::table('stops')->insert([
             'name' => 'Водоканал',
             'stops_order' => 5,
+            'route_id' => 3
+        ]);
+
+        DB::table('stops')->insert([
+            'name' => 'Аптека',
+            'stops_order' => 6,
             'route_id' => 3
         ]);
     }
