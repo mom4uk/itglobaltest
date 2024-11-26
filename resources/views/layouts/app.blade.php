@@ -4,15 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Маршруты автобусов</title>
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <script src="{{ asset('js/app.js') }}"></script>
     </head>
     <body>
-        <div class="container mt-4">
-            <a></a>
-            <a></a>
-        </div>
-        <br>
+        <h1>Маршруты автобусов</h1>
         <div class="container mt-4">
             @yield('content')
         </div>

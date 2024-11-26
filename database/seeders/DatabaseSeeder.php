@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use Illuminate\Support\Facades\DB;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,11 +13,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        DB::table('routes')->insert([
+            'bus_id' => 1,
+            'initial_stop_departure_time' => '9:00',
+            'final_stop_departure_time' => '14:00'
+        ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        DB::table('routes')->insert([
+            'bus_id' => 2,
+            'initial_stop_departure_time' => '10:00',
+            'final_stop_departure_time' => '15:00'
+        ]);
+
+        DB::table('routes')->insert([
+            'bus_id' => 3,
+            'initial_stop_departure_time' => '8:30',
+            'final_stop_departure_time' => '16:15'
         ]);
     }
 }
