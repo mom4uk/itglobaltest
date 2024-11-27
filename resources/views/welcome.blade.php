@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
+@foreach ($busNumbers as $num)
+                <li>{{ $num }}</li>
+            @endforeach
+
+            
 @section('content')
-    {{ html()->modelForm('GET', route('api.find-bus'))->open() }}
+    {{  html()->form('GET', route('api.find-bus'))->open() }}
     {{  html()->label('Откуда', 'from') }}
     {{  html()->input('text', 'from') }}
     {{  html()->label('Куда', 'to') }}

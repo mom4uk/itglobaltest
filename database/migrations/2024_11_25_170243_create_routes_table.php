@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('routes', function (Blueprint $table) {
             $table->id();
-            $table->integer('bus_id')->references('id')->on('buses');
             $table->timestamp('initial_stop_departure_time');
             $table->timestamp('final_stop_departure_time');
         });

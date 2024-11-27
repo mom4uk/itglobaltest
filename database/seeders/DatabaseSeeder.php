@@ -14,6 +14,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
+
+
+
         // routes
 
         DB::table('routes')->insert([
@@ -34,150 +37,229 @@ class DatabaseSeeder extends Seeder
         // buses
 
         DB::table('buses')->insert([
-            'number' => 12,
-            'route_id' => 1
+            'number' => 12
         ]);
 
         DB::table('buses')->insert([
-            'number' => 46,
-            'route_id' => 1
+            'number' => 46
         ]);
 
         DB::table('buses')->insert([
-            'number' => 7,
-            'route_id' => 2
+            'number' => 7
         ]);
+
+        // route 1 seq
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 1,
+            'stop_id' => 1,
+            'sequence' => 0
+        ]);
+
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 1,
+            'stop_id' => 2,
+            'sequence' => 1
+        ]);
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 1,
+            'stop_id' => 3,
+            'sequence' => 2
+        ]);
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 1,
+            'stop_id' => 4,
+            'sequence' => 3
+        ]);
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 1,
+            'stop_id' => 5,
+            'sequence' => 4
+        ]);
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 1,
+            'stop_id' => 6,
+            'sequence' => 5
+        ]);
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 1,
+            'stop_id' => 7,
+            'sequence' => 6
+        ]);
+
+        // route 2 seq
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 2,
+            'stop_id' => 1,
+            'sequence' => 2
+        ]);
+
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 2,
+            'stop_id' => 4,
+            'sequence' => 3
+        ]);
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 2,
+            'stop_id' => 8,
+            'sequence' => 0
+        ]);
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 2,
+            'stop_id' => 9,
+            'sequence' => 1
+        ]);
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 2,
+            'stop_id' => 10,
+            'sequence' => 4
+        ]);
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 2,
+            'stop_id' => 11,
+            'sequence' => 5
+        ]);
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 2,
+            'stop_id' => 12,
+            'sequence' => 6
+        ]);
+
+        // route 3 seq
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 3,
+            'stop_id' => 1,
+            'sequence' => 0
+        ]);
+
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 3,
+            'stop_id' => 13,
+            'sequence' => 1
+        ]);
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 3,
+            'stop_id' => 14,
+            'sequence' => 2
+        ]);
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 3,
+            'stop_id' => 15,
+            'sequence' => 3
+        ]);
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 3,
+            'stop_id' => 16,
+            'sequence' => 4
+        ]);
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 3,
+            'stop_id' => 17,
+            'sequence' => 5
+        ]);
+
+        DB::table('route_stop_sequences')->insert([
+            'route_id' => 3,
+            'stop_id' => 18,
+            'sequence' => 6
+        ]);
+
 
         // stops
 
         DB::table('stops')->insert([
-            'name' => 'ул.Попова',
-            'stops_order' => 0,
-            'route_id' => 1
+            'name' => 'ул.Попова'
         ]);
 
         DB::table('stops')->insert([
-            'name' => 'Аэропорт',
-            'stops_order' => 1,
-            'route_id' => 1
+            'name' => 'Аэропорт'
         ]);
 
         DB::table('stops')->insert([
-            'name' => 'Вокзал',
-            'stops_order' => 2,
-            'route_id' => 1
+            'name' => 'Вокзал'
         ]);
 
         DB::table('stops')->insert([
-            'name' => 'ул.Колчака',
-            'stops_order' => 3,
-            'route_id' => 1
+            'name' => 'ул.Колчака'
         ]);
 
         DB::table('stops')->insert([
-            'name' => 'ул.Демидовича',
-            'stops_order' => 4,
-            'route_id' => 1
+            'name' => 'ул.Демидовича'
         ]);
 
         DB::table('stops')->insert([
-            'name' => 'ул.Петрова',
-            'stops_order' => 5,
-            'route_id' => 1
+            'name' => 'ул.Петрова'
         ]);
 
         DB::table('stops')->insert([
-            'name' => 'Больница №7',
-            'stops_order' => 6,
-            'route_id' => 1
+            'name' => 'Больница №7'
         ]);
         
         // route 2
 
         DB::table('stops')->insert([
-            'name' => 'ул.Попова',
-            'stops_order' => 0,
-            'route_id' => 2
+            'name' => 'ул.Знамени'
         ]);
 
         DB::table('stops')->insert([
-            'name' => 'ВДНХ',
-            'stops_order' => 1,
-            'route_id' => 2
+            'name' => 'ВДНХ'
         ]);
 
         DB::table('stops')->insert([
-            'name' => 'ул.Галицина',
-            'stops_order' => 2,
-            'route_id' => 2
+            'name' => 'Рынок'
         ]);
 
         DB::table('stops')->insert([
-            'name' => 'Рынок',
-            'stops_order' => 3,
-            'route_id' => 2
+            'name' => 'ул.Павлова'
         ]);
 
         DB::table('stops')->insert([
-            'name' => 'ул.Павлова',
-            'stops_order' => 4,
-            'route_id' => 2
-        ]);
-
-        DB::table('stops')->insert([
-            'name' => 'ул.Артемьева',
-            'stops_order' => 5,
-            'route_id' => 2
-        ]);
-
-        DB::table('stops')->insert([
-            'name' => 'ул.Бора',
-            'stops_order' => 6,
-            'route_id' => 2
+            'name' => 'ул.Бора'
         ]);
 
         // route 3
 
         DB::table('stops')->insert([
-            'name' => 'Больница №2',
-            'stops_order' => 0,
-            'route_id' => 3
+            'name' => 'ул.Герцена'
         ]);
 
         DB::table('stops')->insert([
-            'name' => 'ул.Герцена',
-            'stops_order' => 1,
-            'route_id' => 3
+            'name' => 'ул.Победы'
         ]);
 
         DB::table('stops')->insert([
-            'name' => 'ул.Победы',
-            'stops_order' => 2,
-            'route_id' => 3
+            'name' => 'Площадь Мужества'
         ]);
 
         DB::table('stops')->insert([
-            'name' => 'Площадь Мужества',
-            'stops_order' => 3,
-            'route_id' => 3
+            'name' => 'ул.Леонтьева'
         ]);
 
         DB::table('stops')->insert([
-            'name' => 'ул.Леонтьева',
-            'stops_order' => 4,
-            'route_id' => 3
+            'name' => 'Водоканал'
         ]);
 
         DB::table('stops')->insert([
-            'name' => 'Водоканал',
-            'stops_order' => 5,
-            'route_id' => 3
-        ]);
-
-        DB::table('stops')->insert([
-            'name' => 'Аптека',
-            'stops_order' => 6,
-            'route_id' => 3
+            'name' => 'Аптека'
         ]);
     }
 }

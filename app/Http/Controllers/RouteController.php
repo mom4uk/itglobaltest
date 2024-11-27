@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Route;
+use App\Models\Stop;
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {
-    public function find() {
-        $route = new Route();
-        $stub = ['from' => 'Пушкина', 'to' => 'Ленина'];
-        $buses = $route->findBuses($stub);
-        return view('index', compact('buses')); // в index пойдет вывод автобусов
+    public function find(Request $request) {
+        $stub = [$request->from, $request->to];
+        $stops = Stop::select('*')->whereIn('id', [1, 2])->get();
+        $routesSchedule = Route::get();
+        $data = []; // here query in db for route data
+        // $buses = $route->findBuses($data);
+        return view('welcome', compact('busNumbers')); // в index пойдет вывод автобусов
     }
 }

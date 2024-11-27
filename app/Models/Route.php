@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Route extends Model
 {
-    public function findBuses($stops) {
+    private $minutesBetweenStops = 40;
+
+    public function findBuses($stops): string {
         $currentTime = '12'; // find current time
         $routes = []; // here some routes
-        
+        return '';
     }
 }
