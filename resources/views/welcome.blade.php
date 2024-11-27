@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@foreach ($busNumbers as $num)
+@foreach ($buses as $num)
                 <li>{{ $num }}</li>
             @endforeach
 
-            
+
 @section('content')
     {{  html()->form('GET', route('api.find-bus'))->open() }}
     {{  html()->label('Откуда', 'from') }}

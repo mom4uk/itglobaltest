@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('buses', function (Blueprint $table) {
             $table->id();
             $table->integer('number');
+            $table->integer('route_id')->references('id')->on('routes');
         });
     }
 

@@ -37,15 +37,18 @@ class DatabaseSeeder extends Seeder
         // buses
 
         DB::table('buses')->insert([
-            'number' => 12
+            'number' => 12,
+            'route_id' => 1
         ]);
 
         DB::table('buses')->insert([
-            'number' => 46
+            'number' => 46,
+            'route_id' => 2
         ]);
 
         DB::table('buses')->insert([
-            'number' => 7
+            'number' => 7,
+            'route_id' => 3
         ]);
 
         // route 1 seq
