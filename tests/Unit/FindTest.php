@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use App\Models\Route;
+use Carbon\Carbon;
 
 class FindTest extends TestCase
 {
@@ -17,11 +18,17 @@ class FindTest extends TestCase
     /** @test */
     public function findBusesTest(): void
     {
-        $path = $this->getFilePath('correctOutput.json');
-        $expected = file_get_contents($path);
-        // 1 и 2 маршруты пересекаются на остановках Колчака и Попова, Попова есть еще и в 3
-        $data = ['from' => 7, 'to' => 12];
+        $outputPath = $this->getFilePath('correctOutput.json');
+        $expected = file_get_contents($outputPath);
+
+        $dataPath = $this->getFilePath('testData.php');
+        $data = file_get_contents($dataPath); // serialization is needed
+
+        $request = [1, 4];
+
+        Carbon::setTestNow('11:30');
+
         $route = new Route();
-        $this->assertEquals($expected, $route->findBuses($data));
+        $this->assertEquals($expected, $route->findBuses($data, $request));
     }
 }

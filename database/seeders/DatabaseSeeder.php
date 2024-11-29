@@ -13,23 +13,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
-
-
-
         // routes
 
         DB::table('routes')->insert([
+            'minutes_between_stops' => 42,
             'initial_stop_departure_time' => '2001-02-16 09:00:00',
             'final_stop_departure_time' => '2001-02-16 14:00:00'
         ]);
 
         DB::table('routes')->insert([
+            'minutes_between_stops' => 39,
             'initial_stop_departure_time' => '2001-02-16 10:00:00',
             'final_stop_departure_time' => '2001-02-16 15:00:00'
         ]);
 
         DB::table('routes')->insert([
+            'minutes_between_stops' => 34,
             'initial_stop_departure_time' => '2001-02-16 10:00:00',
             'final_stop_departure_time' => '2001-02-16 15:00:00'
         ]);
