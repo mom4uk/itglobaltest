@@ -2,6 +2,15 @@
 
 
 @section('content')
+    @if ($errors->any())
+        <div>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     {{  html()->form('GET', route('api.find-bus'))->open() }}
     {{  html()->label('Откуда', 'from') }}
     {{  html()->input('text', 'from') }}
@@ -21,7 +30,15 @@
     <br>
     <br>
     <h3>Введите последовательность id остановок и id маршрута</h3><br>
-
+    @if ($errors->any())
+        <div>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     {{ html()->label('id маршрута', 'route_id') }}<br>
     {{ html()->input('text', 'route_id') }}<br>
 

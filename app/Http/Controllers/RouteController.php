@@ -4,19 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Route;
 use App\Models\RouteStopSequence;
-use App\Models\Stop;
 
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {
-    public function find(Request $request) {
-        $route = new Route();
-        $req = [1, 4]; // add error output for null if there are no routes with this stops, cannot be the same 1 and 1 for exmp (validation)
-
+    public function find(Request $request) 
+    {
         $request->validate([
-            
+            'from' => 'required|integer|different:to',
+            'to' => 'required|integer|different:from'
         ]);
+
+        $route = new Route();
+        $req = [$request->from, $request->to];
 
         $routesRaw = RouteStopSequence::select('route_id')
             ->whereIn('stop_id', $req)
@@ -33,24 +34,20 @@ class RouteController extends Controller
 
     public function update(Request $request)
     {
-        dump($request->route_id, $request->stop_ids);
-        $req = ['3', '18,17,16,15,14,13,1'];
         $request->validate([
-            'route_id' => 'required',
-            'stop_ids'
+            'route_id' => 'required|integer',
+            'stop_ids' => 'required'
         ]);
-        // $stopIds = $request->stop_ids;
-        // $routeId = $request->route_id;
-        $stopsIds = explode(',', $req[1]);
-        $routeId = intval($req[0]);
-        foreach ($stopsIds as $stopId) {
-            $index = array_search($stopId, $stopsIds);
+
+        $stopIds = explode(',', $request->stop_ids);
+        $routeId = $request->route_id;
+        foreach ($stopIds as $stopId) {
+            $index = array_search($stopId, $stopIds);
             RouteStopSequence::where('route_id', $routeId)
             ->where('stop_id', $stopId)
             ->update(['sequence' => $index]);
         }
-        $data = RouteStopSequence::where('route_id', $routeId)->get()->toArray();
-        dump($data);
+        return redirect('/');
     }
 
     private function normalizeRouteData($id)
