@@ -1,0 +1,20 @@
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
+    command: >
+      sh -c "composer install &&
+            make start-app"
+
+  database:
+    image: postgres:13.2-alpine
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - 54320:5432
