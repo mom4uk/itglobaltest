@@ -35,14 +35,3 @@ compose-build:
 
 compose-start:
 	docker compose up --abort-on-container-exit
-
-full-clear: container-stop containers-remove images-clear
-
-containers-remove:
-	docker rm $(docker ps -a -q) 
-
-container-stop:
-	docker stop $(docker ps -a -q)
-
-images-clear:
-	docker rmi $(docker images -q)
