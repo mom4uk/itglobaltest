@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-
 class Route extends Model
 {
-    public function findBuses($data, $req): string {
+    public function findBuses($data, $req): string
+    {
         $routeIds = collect($data)->pluck('id')->all();
 
         $routesInfo = array_map(function ($id) use ($data, $req) {
@@ -20,7 +20,9 @@ class Route extends Model
 
             $directionForward = $this->isRouteForward($coll, $req);
 
-            $startTime = $directionForward ? $coll->value('initial_stop_departure_time') : $coll->value('final_stop_departure_time');
+            $startTime = $directionForward ?
+                $coll->value('initial_stop_departure_time') :
+                $coll->value('final_stop_departure_time');
 
             $lastStopName = $this->getLastStop($coll, $directionForward);
 
@@ -41,7 +43,7 @@ class Route extends Model
         $fromNameStop = collect($data)
             ->flatMap(fn($item) => $item['data'])
             ->firstWhere('stop_id', $from)['name'];
-        
+
         $toNameStop = collect($data)
             ->flatMap(fn($item) => $item['data'])
             ->firstWhere('stop_id', $to)['name'];
@@ -72,9 +74,9 @@ class Route extends Model
         $closestTime = collect($arrivales)
             ->sortBy(fn($time) => abs(strtotime($time) - $currentTimestamp))
             ->first();
-        
+
         $closestTimeIndex = array_search($closestTime, $arrivales);
-        return array_slice($arrivales, $closestTimeIndex, 3); // think how process when closest time last index 
+        return array_slice($arrivales, $closestTimeIndex, 3); // think how process when closest time last index
     }
 
     private function getArrivales($coll, $initialTime, $directionForward)
@@ -93,8 +95,9 @@ class Route extends Model
         }
         return $result;
     }
-    
-    private function isRouteForward($coll, $req) {
+
+    private function isRouteForward($coll, $req)
+    {
         [$from, $to] = $req;
         $fromSeq = $coll->firstWhere('stop_id', $from)['sequence'];
         $toSeq = $coll->firstWhere('stop_id', $to)['sequence'];

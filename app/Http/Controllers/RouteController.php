@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Route;
 use App\Models\RouteStopSequence;
-
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {
-    public function find(Request $request) 
+    public function find(Request $request)
     {
         $request->validate([
             'from' => 'required|integer|different:to',
@@ -55,17 +54,18 @@ class RouteController extends Controller
         $routeData = RouteStopSequence::
             select(
                 'route_stop_sequences.route_id',
-                'route_stop_sequences.stop_id', 
-                'route_stop_sequences.sequence', 
-                'stops.name', 
-                'buses.number as bus_number', 
-                'initial_stop_departure_time', 
+                'route_stop_sequences.stop_id',
+                'route_stop_sequences.sequence',
+                'stops.name',
+                'buses.number as bus_number',
+                'initial_stop_departure_time',
                 'final_stop_departure_time',
-                'minutes_between_stops')
-            ->join('stops','route_stop_sequences.stop_id','=','stops.id')
-            ->join('routes','route_stop_sequences.route_id','=','routes.id')
-            ->join('buses','route_stop_sequences.route_id','=','buses.route_id')
-            ->where('route_stop_sequences.route_id','=', $id)
+                'minutes_between_stops'
+            )
+            ->join('stops', 'route_stop_sequences.stop_id', '=', 'stops.id')
+            ->join('routes', 'route_stop_sequences.route_id', '=', 'routes.id')
+            ->join('buses', 'route_stop_sequences.route_id', '=', 'buses.route_id')
+            ->where('route_stop_sequences.route_id', '=', $id)
             ->get()
             ->toArray();
 
