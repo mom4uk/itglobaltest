@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('route_id')->references('id')->on('routes');
             $table->integer('stop_id')->references('id')->on('stops');
             $table->integer('sequence');
+            $table->timestamps();
         });
     }
 

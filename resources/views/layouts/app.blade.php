@@ -10,5 +10,8 @@
         <div class="container mt-4">
             @yield('content')
         </div>
+        <div class="container mt-4">
+            @yield('update')
+        </div>
     </body>
 </html>
