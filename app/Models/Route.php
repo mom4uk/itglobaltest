@@ -33,7 +33,7 @@ class Route extends Model
             return $this->getRouteInfo($busNum, $nextArrivales, $lastStopName);
         }, $routeIds);
         $result = $this->getFullInfo($routesInfo, $req, $data);
-        return json_encode($result, JSON_UNESCAPED_UNICODE);
+        return json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
 
     private function getFullInfo($routesInfo, $reqId, $data)
