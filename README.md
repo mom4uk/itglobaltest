@@ -14,14 +14,13 @@
     ```
     DB_CONNECTION=pgsql
     DB_HOST=database
-    DB_PORT=54320
+    DB_PORT=5432
     DB_DATABASE=postgres
     DB_USERNAME=postgres
     DB_PASSWORD=postgres
     ```
-4. Поднимите контейнер с бд и наполните данными
+4. Подготовьте данные бд
     ```
-    make compose-start-database
     make db-prepare
     ```
 5. Запустите локальный сервер

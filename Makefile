@@ -21,6 +21,9 @@ install:
 db-prepare:
 	php artisan migrate:fresh --seed
 
+db-backup:
+	pg_basebackup -h 127.0.0.1 -D ./dbdata
+
 .PHONY: tests
 
 
