@@ -32,7 +32,9 @@ class Route extends Model
 
             return $this->getRouteInfo($busNum, $nextArrivales, $lastStopName);
         }, $routeIds);
+
         $result = $this->getFullInfo($routesInfo, $req, $data);
+        
         return json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
 
@@ -54,7 +56,7 @@ class Route extends Model
     private function getLastStop($coll, $directionForward)
     {
         $sorted = $coll->sortBy('sequence');
-        return $directionForward ? $sorted->last()['name'] : $sorted->last()['name'];
+        return $directionForward ? $sorted->first()['name'] : $sorted->last()['name'];;
     }
 
     private function getRouteInfo($busNumber, $arrivales, $lastStop)
@@ -68,7 +70,7 @@ class Route extends Model
     private function getNextArrivales($arrivales)
     {
         date_default_timezone_set('Europe/Moscow'); // need to transfer to settings
-        $currentTime = date('H:i'); // stub
+        $currentTime = date('H:i'); // stub if you need
         $currentTimestamp = strtotime($currentTime);
 
         $closestTime = collect($arrivales)
@@ -76,7 +78,7 @@ class Route extends Model
             ->first();
 
         $closestTimeIndex = array_search($closestTime, $arrivales);
-        return array_slice($arrivales, $closestTimeIndex, 3); // think how process when closest time last index
+        return array_slice($arrivales, $closestTimeIndex, 3); // think about how process when closest time last index
     }
 
     private function getArrivales($coll, $initialTime, $directionForward)
