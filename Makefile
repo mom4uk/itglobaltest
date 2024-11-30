@@ -1,6 +1,6 @@
 PORT ?= 8000
 
-setup: install db-prepare # db нужно ли?
+setup: install
 	
 
 tests:
@@ -23,12 +23,6 @@ db-prepare:
 
 .PHONY: tests
 
-
-compose-start-database:
-	docker compose up -d database
-
-compose-setup: compose-build
-	docker compose run --rm application make setup
 
 compose-build:
 	docker compose build

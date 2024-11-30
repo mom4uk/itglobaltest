@@ -13,7 +13,7 @@
     3. Добавьте переменные окружения в .env файл
         ```
         DB_CONNECTION=pgsql
-        DB_HOST=localhost
+        DB_HOST=database
         DB_PORT=54320
         DB_DATABASE=postgres
         DB_USERNAME=postgres
