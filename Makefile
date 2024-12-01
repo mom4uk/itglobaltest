@@ -24,7 +24,7 @@ db-migrate-seed:
 	php artisan migrate:fresh --seed
 
 db-backup:
-	pg_basebackup -h 127.0.0.1 -D ./dbdata
+	pg_basebackup -h localhost -D dbdata
 
 .PHONY: tests
 
