@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RouteController;
 
-Route::get('/', [RouteController::class, 'welcome']);
+Route::get('/', [RouteController::class, 'welcome'])
+    ->name('welcome');
 
 Route::get('/api/find-bus', [RouteController::class, 'find'])
     ->name('api.find-bus');

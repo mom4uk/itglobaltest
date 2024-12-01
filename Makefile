@@ -1,6 +1,6 @@
 PORT ?= 8000
 
-setup: install
+setup: install db-prepare
 	
 
 tests:
@@ -18,7 +18,9 @@ start-app:
 install:
 	composer install
 
-db-prepare:
+db-prepare: db-migrate-seed db-backup
+
+db-migrate-seed:
 	php artisan migrate:fresh --seed
 
 db-backup:
