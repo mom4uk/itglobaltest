@@ -50,8 +50,14 @@
     DB_USERNAME=postgres
     DB_PASSWORD=postgres
     ```
+5. Стартануть бд контейнер
+    ```
+    make compose-start-database
+    make db-prepare
+    ```
 5. Соберите и запустите приложение
 
     ```
+    make compose-setup
     make compose-start
     ```
