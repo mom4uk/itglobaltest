@@ -4,6 +4,11 @@
 ## Схема структуры базы данных
 ![Схема](https://github.com/mom4uk/itglobaltest/blob/master/other/Screenshot%202024-11-29%20at%2013.42.03.png)
 
+## Requirements
+* PHP ^8.2
+* Composer
+* PosgreSQL
+
 ## Инструция по запуску локально
 1. Склонируйте репозиторий
 
