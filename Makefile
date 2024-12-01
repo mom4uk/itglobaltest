@@ -1,5 +1,7 @@
 PORT ?= 8000
 
+setup: install key 
+
 tests:
 	php artisan test
 

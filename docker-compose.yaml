@@ -12,16 +12,13 @@ services:
     command: >
       sh -c "composer install &&
             make start-app"
-    networks:
-      - default
 
   database:
     image: postgres:14
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
-      POSTGRES_HOST: localhost
     ports:
-      - 54320:5432
+      - 5432:5432
     volumes:
       - ./dbdata:/var/lib/postgresql/data
     healthcheck:
@@ -29,5 +26,3 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-    networks:
-      - default
