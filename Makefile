@@ -1,8 +1,5 @@
 PORT ?= 8000
 
-setup: install db-prepare
-	
-
 tests:
 	php artisan test
 
@@ -26,8 +23,16 @@ db-migrate-seed:
 db-backup:
 	pg_basebackup -h localhost -D dbdata
 
+key:
+	php artisan key:generate
+
 .PHONY: tests
 
+compose-start-database:
+	docker compose up -d database
+
+compose-setup: compose-build
+	docker compose run --rm app make setup
 
 compose-build:
 	docker compose build

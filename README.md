@@ -12,9 +12,9 @@
 ## Инструция по запуску локально
 1. Склонируйте репозиторий
 
-2. Установите зависимости и подготовьте данные бд
+2. Установите зависимости
     ```
-    make setup
+    make install
     ```
 3. Добавьте переменные окружения в .env файл
     ```
@@ -25,23 +25,20 @@
     DB_USERNAME=postgres
     DB_PASSWORD=postgres
     ```
+4. Подготовьте данные бд
+    ```
+    make db-prepare
+    ```
 
 
-## Инструкция по запуску в Docker
+## Запуск в Docker
 
-1. Склонируйте репозиторий
-
-2. Установите в docker-compose.yaml номер версии вашей бд
+5. Установите в docker-compose.yaml номер версии вашей бд
     ```
     database:
         image: postgres:{BD_VERSION}
     ```
-
-3. Установите зависимости и подготовьте данные бд
-    ```
-    make setup
-    ```
-4. Добавьте переменные окружения в .env файл
+6. Добавьте переменные окружения в .env файл
     ```
     DB_CONNECTION=pgsql
     DB_HOST=database
@@ -50,12 +47,7 @@
     DB_USERNAME=postgres
     DB_PASSWORD=postgres
     ```
-5. Стартануть бд контейнер
-    ```
-    make compose-start-database
-    make db-prepare
-    ```
-5. Соберите и запустите приложение
+7. Соберите и запустите приложение
 
     ```
     make compose-setup
