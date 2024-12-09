@@ -15,7 +15,7 @@ class RouteController extends Controller
             ->toArray();
         $routes = array_map(fn($item) => $item['id'], $routesRaw);
         $sequenceData = array_map([$this, 'getSequenceData'], $routes);
-        return $sequenceData;
+        return json_encode($sequenceData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
 
     public function find(Request $request)
@@ -38,7 +38,8 @@ class RouteController extends Controller
 
         $normalizedData = array_map([$this, 'normalizeRouteData'], $routes);
         $buses = $route->findBuses($normalizedData, $req);
-        return $buses;
+        dump($buses);
+        return view('welcome', 'buses');
     }
 
     public function update(Request $request)
