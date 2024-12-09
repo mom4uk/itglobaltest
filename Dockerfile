@@ -12,8 +12,7 @@ RUN apt-get update \
     && add-apt-repository ppa:ondrej/php \
     && apt-get install -y \
     curl \
-    make \
-    vim
+    make
 
 COPY . .
 
