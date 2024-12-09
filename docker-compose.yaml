@@ -9,20 +9,20 @@ services:
     depends_on:
       database:
         condition: service_healthy
-    command: >
-      sh -c "composer install &&
-            make start-app"
+    command: ["make", "start-app"]
 
   database:
     image: postgres:14
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
     ports:
-      - 5432:5432
+      - 5433:5432
     volumes:
-      - ./dbdata:/var/lib/postgresql/data
+      - dbdata:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
+volumes:
+  dbdata:

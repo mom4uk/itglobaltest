@@ -7,8 +7,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Moscow
 ENV PHP_VERSION=8.3
 
-COPY . .
-
 RUN apt-get update \
     && apt install software-properties-common -y \
     && add-apt-repository ppa:ondrej/php \
@@ -16,6 +14,8 @@ RUN apt-get update \
     curl \
     make \
     vim
+
+COPY . .
 
 RUN apt-get install -y \
     php${PHP_VERSION} \
@@ -34,7 +34,7 @@ RUN apt-get install -y \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN composer install --prefer-dist --no-scripts --no-dev --no-autoloader
+RUN composer install
 
 CMD ["bash", "-c", "make db-prepare start-app"]
 
