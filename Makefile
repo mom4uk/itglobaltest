@@ -1,6 +1,7 @@
 PORT ?= 8000
 
-setup: install key
+setup: install
+	php artisan key:generate
 
 tests:
 	php artisan test
@@ -19,9 +20,6 @@ install:
 
 db-prepare:
 	php artisan migrate:fresh --seed
-
-key:
-	php artisan key:generate
 
 .PHONY: tests
 
