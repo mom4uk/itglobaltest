@@ -1,6 +1,6 @@
 PORT ?= 8000
 
-setup: install key 
+setup: install key
 
 tests:
 	php artisan test
@@ -17,13 +17,8 @@ start-app:
 install:
 	composer install
 
-db-prepare: db-migrate-seed db-backup
-
-db-migrate-seed:
+db-prepare:
 	php artisan migrate:fresh --seed
-
-db-backup:
-	pg_basebackup -h localhost -D dbdata
 
 key:
 	php artisan key:generate

@@ -7,7 +7,6 @@
 ## Requirements
 * PHP ^8.2
 * Composer
-* PosgreSQL
 
 ## Инструция по запуску локально
 1. Склонируйте репозиторий
@@ -20,34 +19,34 @@
     ```
     DB_CONNECTION=pgsql
     DB_HOST=localhost
-    DB_PORT=5432
+    DB_PORT=5433
     DB_DATABASE=postgres
     DB_USERNAME=postgres
     DB_PASSWORD=postgres
     ```
 4. Подготовьте данные бд
     ```
+    make compose-start-database
     make db-prepare
+    ```
+5. Запустите приложение
+    ```
+    make start-app
     ```
 
 
 ## Запуск в Docker
 
-5. Установите в docker-compose.yaml номер версии вашей бд
-    ```
-    database:
-        image: postgres:{BD_VERSION}
-    ```
-6. Добавьте переменные окружения в .env файл
+1. Измените переменные окружения в .env файле
     ```
     DB_CONNECTION=pgsql
     DB_HOST=database
-    DB_PORT=5432
+    DB_PORT=5433
     DB_DATABASE=postgres
     DB_USERNAME=postgres
     DB_PASSWORD=postgres
     ```
-7. Соберите и запустите приложение
+2. Соберите и запустите приложение
 
     ```
     make compose-setup
