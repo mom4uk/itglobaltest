@@ -33,6 +33,10 @@
     ```
     make start-app
     ```
+6. Запуск тестов
+    ```
+    make tests
+    ```
 
 
 ## Запуск в Docker
