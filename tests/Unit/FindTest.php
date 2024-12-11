@@ -16,7 +16,7 @@ class FindTest extends TestCase
     }
 
     /** @test */
-    public function findBusesForwardTest(): void
+    public function findBusesForwardDirectionTest(): void
     {
         $outputPath = $this->getFilePath('correctOutput.json');
         $dataPath = $this->getFilePath('testData.json');
