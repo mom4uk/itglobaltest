@@ -18,7 +18,7 @@ class FindTest extends TestCase
     /** @test */
     public function findBusesForwardDirectionTest(): void
     {
-        $outputPath = $this->getFilePath('correctOutput.json');
+        $outputPath = $this->getFilePath('forwardDirectionCorrectOutput.json');
         $dataPath = $this->getFilePath('testData.json');
     
         $expected = file_get_contents($outputPath);
