@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Route extends Model
 {
     public function findBuses($data, $req): string
     {
         $routeIds = collect($data)->pluck('id')->all();
-
         $routesInfo = array_map(function ($id) use ($data, $req) {
             $coll = collect($data)
                 ->filter(fn($item) => $item['id'] === $id)
@@ -56,7 +56,7 @@ class Route extends Model
     private function getLastStop($coll, $directionForward)
     {
         $sorted = $coll->sortBy('sequence');
-        return $directionForward ? $sorted->first()['name'] : $sorted->last()['name'];;
+        return $directionForward ? $sorted->last()['name'] : $sorted->first()['name'];;
     }
 
     private function getRouteInfo($busNumber, $arrivales, $lastStop)
@@ -69,31 +69,29 @@ class Route extends Model
 
     private function getNextArrivales($arrivales)
     {
-        date_default_timezone_set('Europe/Moscow'); // need to transfer to settings
-        $currentTime = date('H:i'); // stub if you need
+        $currentTime = Carbon::now()->format('H:i');
         $currentTimestamp = strtotime($currentTime);
 
         $closestTime = collect($arrivales)
             ->sortBy(fn($time) => abs(strtotime($time) - $currentTimestamp))
             ->first();
-
         $closestTimeIndex = array_search($closestTime, $arrivales);
         return array_slice($arrivales, $closestTimeIndex, 3); // think about how process when closest time last index
     }
 
     private function getArrivales($coll, $initialTime, $directionForward)
     {
-        $date = new \DateTimeImmutable($initialTime);
-        $startTime = $date->format('H:i');
+        $startTime = Carbon::parse($initialTime)->format('H:i');
         $result = [$startTime];
         $stops = $directionForward ? $coll->all() : $coll->reverse()->all();
         $minutesBetweenStops = $coll->value('minutes_between_stops');
 
         for ($i = 1; $i <= count($stops); $i += 1) {
-            $date = new \DateTimeImmutable($result[$i - 1]);
-            $result[] = $date
-                ->modify("+{$minutesBetweenStops} minutes")
+            $date = $result[$i - 1];
+            $newDate = Carbon::parse($date)
+                ->addMinutes($minutesBetweenStops)
                 ->format('H:i');
+            $result[] = $newDate;
         }
         return $result;
     }
