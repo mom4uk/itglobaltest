@@ -38,8 +38,7 @@ class RouteController extends Controller
 
         $normalizedData = array_map([$this, 'normalizeRouteData'], $routes);
         $buses = $route->findBuses($normalizedData, $req);
-        dump($buses);
-        return view('welcome', 'buses');
+        return $buses;
     }
 
     public function update(Request $request)
