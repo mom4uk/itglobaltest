@@ -26,7 +26,7 @@ class FindTest extends TestCase
     
         $request = [1, 4];
 
-        Carbon::setTestNow(Carbon::create(2001, 5, 21, 11));
+        Carbon::setTestNow(Carbon::today()->setTime(11, 0, 0));
 
         $route = new Route();
         $this->assertEquals($expected, $route->findBuses($data, $request));
