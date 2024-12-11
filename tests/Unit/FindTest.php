@@ -19,7 +19,7 @@ class FindTest extends TestCase
     public function findBusesForwardTest(): void
     {
         $outputPath = $this->getFilePath('correctOutput.json');
-        $dataPath = $this->getFilePath('testData');
+        $dataPath = $this->getFilePath('testData.json');
     
         $expected = file_get_contents($outputPath);
         $data = json_decode(file_get_contents($dataPath), true);
