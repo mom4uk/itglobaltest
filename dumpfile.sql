@@ -94,15 +94,38 @@ ALTER SEQUENCE public.migrations_id_seq OWNED BY public.migrations.id;
 --
 
 CREATE TABLE public.route_stop_sequences (
+    id bigint NOT NULL,
     route_id integer NOT NULL,
     stop_id integer NOT NULL,
-    sequence integer NOT NULL,
+    sequence_forward integer,
+    sequence_backward integer,
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone
 );
 
 
 ALTER TABLE public.route_stop_sequences OWNER TO postgres;
+
+--
+-- Name: route_stop_sequences_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.route_stop_sequences_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.route_stop_sequences_id_seq OWNER TO postgres;
+
+--
+-- Name: route_stop_sequences_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.route_stop_sequences_id_seq OWNED BY public.route_stop_sequences.id;
+
 
 --
 -- Name: routes; Type: TABLE; Schema: public; Owner: postgres
@@ -138,22 +161,6 @@ ALTER TABLE public.routes_id_seq OWNER TO postgres;
 
 ALTER SEQUENCE public.routes_id_seq OWNED BY public.routes.id;
 
-
---
--- Name: sessions; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.sessions (
-    id character varying(255) NOT NULL,
-    user_id bigint,
-    ip_address character varying(45),
-    user_agent text,
-    payload text NOT NULL,
-    last_activity integer NOT NULL
-);
-
-
-ALTER TABLE public.sessions OWNER TO postgres;
 
 --
 -- Name: stops; Type: TABLE; Schema: public; Owner: postgres
@@ -203,6 +210,13 @@ ALTER TABLE ONLY public.migrations ALTER COLUMN id SET DEFAULT nextval('public.m
 
 
 --
+-- Name: route_stop_sequences id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.route_stop_sequences ALTER COLUMN id SET DEFAULT nextval('public.route_stop_sequences_id_seq'::regclass);
+
+
+--
 -- Name: routes id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -232,11 +246,10 @@ COPY public.buses (id, number, route_id) FROM stdin;
 --
 
 COPY public.migrations (id, migration, batch) FROM stdin;
-70	2024_11_25_170243_create_routes_table	2
-71	2024_11_25_170617_create_buses_table	2
-72	2024_11_26_094250_create_stops_table	2
-73	2024_11_27_162630_create_route_stop_sequences_table	2
-37	2024_11_27_125556_create_sessions_table	1
+1	2024_11_25_170243_create_routes_table	1
+2	2024_11_25_170617_create_buses_table	1
+3	2024_11_26_094250_create_stops_table	1
+4	2024_11_27_162630_create_route_stop_sequences_table	1
 \.
 
 
@@ -244,28 +257,28 @@ COPY public.migrations (id, migration, batch) FROM stdin;
 -- Data for Name: route_stop_sequences; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.route_stop_sequences (route_id, stop_id, sequence, created_at, updated_at) FROM stdin;
-1	1	0	\N	\N
-1	2	1	\N	\N
-1	3	2	\N	\N
-1	4	3	\N	\N
-1	5	4	\N	\N
-1	6	5	\N	\N
-1	7	6	\N	\N
-2	1	2	\N	\N
-2	4	3	\N	\N
-2	8	0	\N	\N
-2	9	1	\N	\N
-2	10	4	\N	\N
-2	11	5	\N	\N
-2	12	6	\N	\N
-3	18	0	\N	2024-11-29 08:26:52
-3	17	1	\N	2024-11-29 08:26:52
-3	16	2	\N	2024-11-29 08:26:52
-3	15	3	\N	2024-11-29 08:26:52
-3	14	4	\N	2024-11-29 08:26:52
-3	13	5	\N	2024-11-29 08:26:52
-3	1	6	\N	2024-11-29 08:26:52
+COPY public.route_stop_sequences (id, route_id, stop_id, sequence_forward, sequence_backward, created_at, updated_at) FROM stdin;
+1	1	1	0	5	\N	\N
+2	1	2	1	6	\N	\N
+3	1	3	2	3	\N	\N
+4	1	4	3	4	\N	\N
+5	1	5	4	1	\N	\N
+6	1	6	5	2	\N	\N
+7	1	7	6	0	\N	\N
+8	2	1	2	6	\N	\N
+9	2	4	3	5	\N	\N
+10	2	8	0	4	\N	\N
+11	2	9	1	1	\N	\N
+12	2	10	4	2	\N	\N
+13	2	11	5	3	\N	\N
+14	2	12	6	0	\N	\N
+15	3	1	0	6	\N	\N
+16	3	13	1	5	\N	\N
+17	3	14	2	4	\N	\N
+18	3	15	3	3	\N	\N
+19	3	16	4	1	\N	\N
+20	3	17	5	2	\N	\N
+21	3	18	6	0	\N	\N
 \.
 
 
@@ -278,13 +291,6 @@ COPY public.routes (id, minutes_between_stops, initial_stop_departure_time, fina
 2	39	2001-02-16 10:00:00	2001-02-16 15:00:00
 3	34	2001-02-16 10:00:00	2001-02-16 15:00:00
 \.
-
-
---
--- Data for Name: sessions; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.sessions (id, user_id, ip_address, user_agent, payload, last_activity) FROM stdin;
 
 
 --
@@ -324,7 +330,14 @@ SELECT pg_catalog.setval('public.buses_id_seq', 3, true);
 -- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.migrations_id_seq', 73, true);
+SELECT pg_catalog.setval('public.migrations_id_seq', 4, true);
+
+
+--
+-- Name: route_stop_sequences_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.route_stop_sequences_id_seq', 21, true);
 
 
 --
@@ -362,7 +375,7 @@ ALTER TABLE ONLY public.migrations
 --
 
 ALTER TABLE ONLY public.route_stop_sequences
-    ADD CONSTRAINT route_stop_sequences_pkey PRIMARY KEY (route_id, stop_id);
+    ADD CONSTRAINT route_stop_sequences_pkey PRIMARY KEY (id, route_id, stop_id);
 
 
 --
@@ -374,33 +387,11 @@ ALTER TABLE ONLY public.routes
 
 
 --
--- Name: sessions sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.sessions
-    ADD CONSTRAINT sessions_pkey PRIMARY KEY (id);
-
-
---
 -- Name: stops stops_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.stops
     ADD CONSTRAINT stops_pkey PRIMARY KEY (id);
-
-
---
--- Name: sessions_last_activity_index; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE INDEX sessions_last_activity_index ON public.sessions USING btree (last_activity);
-
-
---
--- Name: sessions_user_id_index; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE INDEX sessions_user_id_index ON public.sessions USING btree (user_id);
 
 
 --
