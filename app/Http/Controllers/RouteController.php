@@ -45,16 +45,18 @@ class RouteController extends Controller
     {
         $request->validate([
             'route_id' => 'required|integer',
-            'stop_ids' => 'required'
+            'stop_ids' => 'required',
+            'is_direction_forward' => 'required'
         ]);
 
         $stopIds = explode(',', $request->stop_ids);
         $routeId = $request->route_id;
+        $sequence = $request->is_direction_forward ? 'sequence_forward' : 'sequence_backward';
         foreach ($stopIds as $stopId) {
             $index = array_search($stopId, $stopIds);
             RouteStopSequence::where('route_id', $routeId)
             ->where('stop_id', $stopId)
-            ->update(['sequence' => $index]);
+            ->update([$sequence => $index]);
         }
         $updatedSequence = $this->getSequenceData($routeId);
         return $updatedSequence;

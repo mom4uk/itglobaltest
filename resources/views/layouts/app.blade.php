@@ -47,6 +47,7 @@
 
     {{ html()->label('id остановок', 'stop_ids') }}<br>
     {{ html()->input('text', 'stop_ids') }}<br>
+    {{ html()->select('is_direction_forward', [true => 'Прямо', false => 'Обратно']) }}<br>
     {{ html()->submit('Изменить') }}
     {{ html()->closeModelForm() }}
         </div>
