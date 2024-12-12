@@ -15,8 +15,7 @@ class FindTest extends TestCase
         return $this->path . $name;
     }
 
-    /** @test */
-    public function findBusesForwardDirectionTest(): void
+    public function testFindBusesForwardDirection(): void
     {
         $outputPath = $this->getFilePath('forwardDirection/correctOutput.json');
         $dataPath = $this->getFilePath('forwardDirection/testData.json');
@@ -32,8 +31,8 @@ class FindTest extends TestCase
         $this->assertEquals($expected, $route->findBuses($data, $request));
     }
     
-    /** @test */
-    public function findBusesNextArrivalesTomorrowTest(): void
+
+    public function testFindBusesNextArrivalesTomorrow(): void
     {
         $outputPath = $this->getFilePath('nextArrivalesTomorrow/correctOutput.json');
         $dataPath = $this->getFilePath('forwardDirection/testData.json');

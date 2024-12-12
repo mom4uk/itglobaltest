@@ -94,7 +94,7 @@ class RouteController extends Controller
             ->where('route_id', $routeId)
             ->get()
             ->toArray();
-        $sorted = collect($stopSequencesData)->sortBy('sequence');
+        $sorted = collect($stopSequencesData)->sortBy('sequence')->values();
         return ['routeId' => $routeId, 'data' => $sorted];
     }
 }
