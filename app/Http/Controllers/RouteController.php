@@ -45,16 +45,18 @@ class RouteController extends Controller
     {
         $request->validate([
             'route_id' => 'required|integer',
-            'stop_ids' => 'required'
+            'stop_ids' => 'required',
+            'is_direction_forward' => 'required'
         ]);
 
         $stopIds = explode(',', $request->stop_ids);
         $routeId = $request->route_id;
+        $sequence = $request->is_direction_forward ? 'sequence_forward' : 'sequence_backward';
         foreach ($stopIds as $stopId) {
             $index = array_search($stopId, $stopIds);
             RouteStopSequence::where('route_id', $routeId)
             ->where('stop_id', $stopId)
-            ->update(['sequence' => $index]);
+            ->update([$sequence => $index]);
         }
         $updatedSequence = $this->getSequenceData($routeId);
         return $updatedSequence;
@@ -66,7 +68,8 @@ class RouteController extends Controller
             select(
                 'route_stop_sequences.route_id',
                 'route_stop_sequences.stop_id',
-                'route_stop_sequences.sequence',
+                'route_stop_sequences.sequence_forward',
+                'route_stop_sequences.sequence_backward',
                 'stops.name',
                 'buses.number as bus_number',
                 'initial_stop_departure_time',
@@ -88,7 +91,8 @@ class RouteController extends Controller
         $stopSequencesData = RouteStopSequence::select(
             'route_stop_sequences.route_id', 
             'stops.name', 
-            'route_stop_sequences.sequence'
+            'route_stop_sequences.sequence_forward',
+            'route_stop_sequences.sequence_backward'
             )
             ->join('stops','route_stop_sequences.stop_id','=','stops.id')
             ->where('route_id', $routeId)

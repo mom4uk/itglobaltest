@@ -12,11 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('route_stop_sequences', function (Blueprint $table) {
-            $table->primary(['route_id', 'stop_id']);
+            $table->id();
             $table->integer('route_id')->references('id')->on('routes');
             $table->integer('stop_id')->references('id')->on('stops');
-            $table->integer('sequence');
+            $table->integer('sequence_forward')->nullable();
+            $table->integer('sequence_backward')->nullable();
             $table->timestamps();
+
+            $table->primary(['id', 'route_id', 'stop_id']);
         });
     }
 

@@ -24,7 +24,7 @@ class Route extends Model
                 $coll->value('initial_stop_departure_time') :
                 $coll->value('final_stop_departure_time');
 
-            $lastStopName = $this->getLastStop($coll, $directionForward);
+            $lastStopName = $this->getLastStop($coll, $directionForward); // will change
 
             $arrivales = $this->getArrivales($coll, $startTime, $directionForward);
 
@@ -55,8 +55,9 @@ class Route extends Model
 
     private function getLastStop($coll, $directionForward)
     {
-        $sorted = $coll->sortBy('sequence');
-        return $directionForward ? $sorted->last()['name'] : $sorted->first()['name'];;
+        $sequence = $directionForward ? 'sequence_forward' : 'sequence_backward';
+        $sorted = $coll->sortBy($sequence);
+        return $sorted->last()['name'];
     }
 
     private function getRouteInfo($busNumber, $arrivales, $lastStop)
@@ -69,7 +70,7 @@ class Route extends Model
 
     private function getNextArrivales($arrivales)
     {
-        $currentTime = Carbon::now()->format('H:i');
+        $currentTime = Carbon::now('Europe/Moscow')->format('H:i');
         $currentTimestamp = strtotime($currentTime);
 
         $closestTime = collect($arrivales)
@@ -102,8 +103,8 @@ class Route extends Model
     private function isRouteForward($coll, $req)
     {
         [$from, $to] = $req;
-        $fromSeq = $coll->firstWhere('stop_id', $from)['sequence'];
-        $toSeq = $coll->firstWhere('stop_id', $to)['sequence'];
+        $fromSeq = $coll->firstWhere('stop_id', $from)['sequence_forward'];
+        $toSeq = $coll->firstWhere('stop_id', $to)['sequence_forward'];
         return $fromSeq - $toSeq < 0;
     }
 }

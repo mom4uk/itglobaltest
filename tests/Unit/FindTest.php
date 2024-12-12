@@ -25,7 +25,7 @@ class FindTest extends TestCase
     
         $request = [1, 4];
 
-        Carbon::setTestNow(Carbon::today()->setTime(11, 0, 0));
+        Carbon::setTestNow(Carbon::today('Europe/Moscow')->setTime(11, 0, 0));
 
         $route = new Route();
         $this->assertEquals($expected, $route->findBuses($data, $request));
@@ -42,7 +42,7 @@ class FindTest extends TestCase
     
         $request = [1, 4];
 
-        Carbon::setTestNow(Carbon::today()->setTime(19, 0, 0));
+        Carbon::setTestNow(Carbon::today('Europe/Moscow')->setTime(19, 0, 0));
 
         $route = new Route();
         $this->assertEquals($expected, $route->findBuses($data, $request));
