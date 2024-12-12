@@ -55,44 +55,51 @@ class DatabaseSeeder extends Seeder
         DB::table('route_stop_sequences')->insert([
             'route_id' => 1,
             'stop_id' => 1,
-            'sequence' => 0
+            'sequence_forward' => 0,
+            'sequence_backward' => 5
         ]);
 
 
         DB::table('route_stop_sequences')->insert([
             'route_id' => 1,
             'stop_id' => 2,
-            'sequence' => 1
+            'sequence_forward' => 1,
+            'sequence_backward' => 6
         ]);
 
         DB::table('route_stop_sequences')->insert([
             'route_id' => 1,
             'stop_id' => 3,
-            'sequence' => 2
+            'sequence_forward' => 2,
+            'sequence_backward' => 3
         ]);
 
         DB::table('route_stop_sequences')->insert([
             'route_id' => 1,
             'stop_id' => 4,
-            'sequence' => 3
+            'sequence_forward' => 3,
+            'sequence_backward' => 4
         ]);
 
         DB::table('route_stop_sequences')->insert([
             'route_id' => 1,
             'stop_id' => 5,
-            'sequence' => 4
+            'sequence_forward' => 4,
+            'sequence_backward' => 1
         ]);
 
         DB::table('route_stop_sequences')->insert([
             'route_id' => 1,
             'stop_id' => 6,
-            'sequence' => 5
+            'sequence_forward' => 5,
+            'sequence_backward' => 2
         ]);
 
         DB::table('route_stop_sequences')->insert([
             'route_id' => 1,
             'stop_id' => 7,
-            'sequence' => 6
+            'sequence_forward' => 6,
+            'sequence_backward' => 0
         ]);
 
         // route 2 seq
@@ -100,44 +107,51 @@ class DatabaseSeeder extends Seeder
         DB::table('route_stop_sequences')->insert([
             'route_id' => 2,
             'stop_id' => 1,
-            'sequence' => 2
+            'sequence_forward' => 2,
+            'sequence_backward' => 6
         ]);
 
 
         DB::table('route_stop_sequences')->insert([
             'route_id' => 2,
             'stop_id' => 4,
-            'sequence' => 3
+            'sequence_forward' => 3,
+            'sequence_backward' => 5
         ]);
 
         DB::table('route_stop_sequences')->insert([
             'route_id' => 2,
             'stop_id' => 8,
-            'sequence' => 0
+            'sequence_forward' => 0,
+            'sequence_backward' => 4
         ]);
 
         DB::table('route_stop_sequences')->insert([
             'route_id' => 2,
             'stop_id' => 9,
-            'sequence' => 1
+            'sequence_forward' => 1,
+            'sequence_backward' => 1
         ]);
 
         DB::table('route_stop_sequences')->insert([
             'route_id' => 2,
             'stop_id' => 10,
-            'sequence' => 4
+            'sequence_forward' => 4,
+            'sequence_backward' => 2
         ]);
 
         DB::table('route_stop_sequences')->insert([
             'route_id' => 2,
             'stop_id' => 11,
-            'sequence' => 5
+            'sequence_forward' => 5,
+            'sequence_backward' => 3
         ]);
 
         DB::table('route_stop_sequences')->insert([
             'route_id' => 2,
             'stop_id' => 12,
-            'sequence' => 6
+            'sequence_forward' => 6,
+            'sequence_backward' => 0
         ]);
 
         // route 3 seq
@@ -145,44 +159,51 @@ class DatabaseSeeder extends Seeder
         DB::table('route_stop_sequences')->insert([
             'route_id' => 3,
             'stop_id' => 1,
-            'sequence' => 0
+            'sequence_forward' => 0,
+            'sequence_backward' => 6
         ]);
 
 
         DB::table('route_stop_sequences')->insert([
             'route_id' => 3,
             'stop_id' => 13,
-            'sequence' => 1
+            'sequence_forward' => 1,
+            'sequence_backward' => 5
         ]);
 
         DB::table('route_stop_sequences')->insert([
             'route_id' => 3,
             'stop_id' => 14,
-            'sequence' => 2
+            'sequence_forward' => 2,
+            'sequence_backward' => 4
         ]);
 
         DB::table('route_stop_sequences')->insert([
             'route_id' => 3,
             'stop_id' => 15,
-            'sequence' => 3
+            'sequence_forward' => 3,
+            'sequence_backward' => 3
         ]);
 
         DB::table('route_stop_sequences')->insert([
             'route_id' => 3,
             'stop_id' => 16,
-            'sequence' => 4
+            'sequence_forward' => 4,
+            'sequence_backward' => 1
         ]);
 
         DB::table('route_stop_sequences')->insert([
             'route_id' => 3,
             'stop_id' => 17,
-            'sequence' => 5
+            'sequence_forward' => 5,
+            'sequence_backward' => 2
         ]);
 
         DB::table('route_stop_sequences')->insert([
             'route_id' => 3,
             'stop_id' => 18,
-            'sequence' => 6
+            'sequence_forward' => 6,
+            'sequence_backward' => 0
         ]);
 
 

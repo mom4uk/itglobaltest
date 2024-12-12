@@ -66,7 +66,8 @@ class RouteController extends Controller
             select(
                 'route_stop_sequences.route_id',
                 'route_stop_sequences.stop_id',
-                'route_stop_sequences.sequence',
+                'route_stop_sequences.sequence_forward',
+                'route_stop_sequences.sequence_backward',
                 'stops.name',
                 'buses.number as bus_number',
                 'initial_stop_departure_time',
@@ -88,7 +89,8 @@ class RouteController extends Controller
         $stopSequencesData = RouteStopSequence::select(
             'route_stop_sequences.route_id', 
             'stops.name', 
-            'route_stop_sequences.sequence'
+            'route_stop_sequences.sequence_forward',
+            'route_stop_sequences.sequence_backward'
             )
             ->join('stops','route_stop_sequences.stop_id','=','stops.id')
             ->where('route_id', $routeId)
