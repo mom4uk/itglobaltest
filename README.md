@@ -2,7 +2,7 @@
 [Ссылка на dump](https://github.com/mom4uk/itglobaltest/blob/master/dumpfile.sql)
 
 ## Схема структуры базы данных
-![Схема](https://github.com/mom4uk/itglobaltest/blob/master/other/db.png)
+![Схема](other/db.png)
 
 ## Requirements
 * PHP ^8.2
