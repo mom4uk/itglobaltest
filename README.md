@@ -5,7 +5,7 @@
 ![Схема](other/db.png)
 
 ## Requirements
-* PHP ^7
+* PHP ^8
 * Composer
 
 ## Инструция по запуску локально
