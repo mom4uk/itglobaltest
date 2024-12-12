@@ -1,0 +1,18 @@
+{
+    "from": "ул.Попова",
+    "to": "ул.Колчака",
+    "buses": [
+        {
+            "route": "Автобус №12 в сторону ост. Больница №7",
+            "next_arrivals": [
+                "Next stops will be tomorrow"
+            ]
+        },
+        {
+            "route": "Автобус №46 в сторону ост. ул.Бора",
+            "next_arrivals": [
+                "Next stops will be tomorrow"
+            ]
+        }
+    ]
+}

@@ -76,7 +76,10 @@ class Route extends Model
             ->sortBy(fn($time) => abs(strtotime($time) - $currentTimestamp))
             ->first();
         $closestTimeIndex = array_search($closestTime, $arrivales);
-        return array_slice($arrivales, $closestTimeIndex, 3); // think about how process when closest time last index
+        $result = strtotime($closestTime) < $currentTimestamp
+            ? ['Next stops will be tomorrow']
+            : array_slice($arrivales, $closestTimeIndex, 3);
+        return $result;
     }
 
     private function getArrivales($coll, $initialTime, $directionForward)
