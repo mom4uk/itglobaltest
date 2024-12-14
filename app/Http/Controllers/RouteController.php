@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class RouteController extends Controller
 {
-    public function welcome()
+    public function index()
     {
         $routesRaw = Route::select('id')
             ->get()
