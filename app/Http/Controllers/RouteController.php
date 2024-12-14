@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Route;
 use App\Models\RouteStopSequence;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RouteController extends Controller
 {
@@ -13,19 +14,22 @@ class RouteController extends Controller
         $routesRaw = Route::select('id')
             ->get()
             ->toArray();
-        $routes = array_map(fn($item) => $item['id'], $routesRaw);
-        $sequenceData = array_map([$this, 'getSequenceData'], $routes);
-        return json_encode($sequenceData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        $routesNums = array_map(fn($item) => $item['id'], $routesRaw);
+        $routes = array_map([$this, 'getSequenceData'], $routesNums);
+        return view('welcome', compact('routes'));
     }
 
     public function find(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'from' => 'required|integer|different:to',
-            'to' => 'required|integer|different:from'
+            'to' => 'required|integer|different:from',
         ]);
 
-        $route = new Route();
+        if ($validator->fails()) {
+            return redirect('/')->withErrors($validator, 'findErrors')->withInput();
+        }
+
         $req = [$request->from, $request->to];
 
         $routesRaw = RouteStopSequence::select('route_id')
@@ -37,17 +41,22 @@ class RouteController extends Controller
         $routes = array_map(fn($item) => $item['route_id'], $routesRaw);
 
         $normalizedData = array_map([$this, 'normalizeRouteData'], $routes);
+        $route = new Route();
         $buses = $route->findBuses($normalizedData, $req);
-        return $buses;
+        return redirect('/')->with(['buses' => $buses]);
     }
 
     public function update(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'route_id' => 'required|integer',
-            'stop_ids' => 'required',
+            'stop_ids' => 'required|string',
             'is_direction_forward' => 'required'
         ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator, 'updateErrors')->withInput();
+        }
 
         $stopIds = explode(',', $request->stop_ids);
         $routeId = $request->route_id;
@@ -58,8 +67,7 @@ class RouteController extends Controller
             ->where('stop_id', $stopId)
             ->update([$sequence => $index]);
         }
-        $updatedSequence = $this->getSequenceData($routeId);
-        return $updatedSequence;
+        return redirect('/');
     }
 
     private function normalizeRouteData($id)
@@ -89,12 +97,13 @@ class RouteController extends Controller
     private function getSequenceData($routeId)
     {
         $stopSequencesData = RouteStopSequence::select(
-            'route_stop_sequences.route_id', 
-            'stops.name', 
+            'route_stop_sequences.route_id',
+            'stops.name',
+            'stops.id',
             'route_stop_sequences.sequence_forward',
             'route_stop_sequences.sequence_backward'
-            )
-            ->join('stops','route_stop_sequences.stop_id','=','stops.id')
+        )
+            ->join('stops', 'route_stop_sequences.stop_id', '=', 'stops.id')
             ->where('route_id', $routeId)
             ->get()
             ->toArray();

@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class Route extends Model
 {
-    public function findBuses($data, $req): string
+    public function findBuses($data, $req): array
     {
         $routeIds = collect($data)->pluck('id')->all();
         $routesInfo = array_map(function ($id) use ($data, $req) {
@@ -24,7 +24,7 @@ class Route extends Model
                 $coll->value('initial_stop_departure_time') :
                 $coll->value('final_stop_departure_time');
 
-            $lastStopName = $this->getLastStop($coll, $directionForward); // will change
+            $lastStopName = $this->getLastStop($coll, $directionForward);
 
             $arrivales = $this->getArrivales($coll, $startTime, $directionForward);
 
@@ -34,8 +34,8 @@ class Route extends Model
         }, $routeIds);
 
         $result = $this->getFullInfo($routesInfo, $req, $data);
-        
-        return json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+
+        return $result;
     }
 
     private function getFullInfo($routesInfo, $reqId, $data)

@@ -19,10 +19,10 @@ class FindTest extends TestCase
     {
         $outputPath = $this->getFilePath('forwardDirection/correctOutput.json');
         $dataPath = $this->getFilePath('forwardDirection/testData.json');
-    
+
         $expected = file_get_contents($outputPath);
         $data = json_decode(file_get_contents($dataPath), true);
-    
+
         $request = [1, 4];
 
         Carbon::setTestNow(Carbon::today('Europe/Moscow')->setTime(11, 0, 0));
@@ -30,16 +30,16 @@ class FindTest extends TestCase
         $route = new Route();
         $this->assertEquals($expected, $route->findBuses($data, $request));
     }
-    
+
 
     public function testFindBusesNextArrivalesTomorrow(): void
     {
         $outputPath = $this->getFilePath('nextArrivalesTomorrow/correctOutput.json');
         $dataPath = $this->getFilePath('forwardDirection/testData.json');
-    
+
         $expected = file_get_contents($outputPath);
         $data = json_decode(file_get_contents($dataPath), true);
-    
+
         $request = [1, 4];
 
         Carbon::setTestNow(Carbon::today('Europe/Moscow')->setTime(19, 0, 0));
