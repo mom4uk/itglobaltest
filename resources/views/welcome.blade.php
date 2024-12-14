@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('find')
-        <!-- Секция find -->
         <div class="col-md-6">
             <h3 class="mb-4">Введите ID начальной и конечной остановок</h3>
 
@@ -43,7 +42,6 @@
 @endsection
 
 @section('update')
-        <!-- Секция update -->
         <div class="col-md-6">
             <h3 class="mb-4">Введите последовательность ID остановок и ID маршрута</h3>
 

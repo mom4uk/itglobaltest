@@ -55,7 +55,7 @@ class RouteController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withErrors($validator, 'updateErrors')->withInput();
+            return redirect('/')->withErrors($validator, 'updateErrors')->withInput();
         }
 
         $stopIds = explode(',', $request->stop_ids);
