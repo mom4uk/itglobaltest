@@ -67,7 +67,7 @@ class RouteController extends Controller
             ->where('stop_id', $stopId)
             ->update([$sequence => $index]);
         }
-        return redirect('/');
+        return redirect('/')->with('success', 'Успешно обновлено');
     }
 
     private function normalizeRouteData($id)
