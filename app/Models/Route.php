@@ -34,7 +34,6 @@ class Route extends Model
         }, $routeIds);
 
         $result = $this->getFullInfo($routesInfo, $req, $data);
-
         return $result;
     }
 

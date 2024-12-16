@@ -20,7 +20,7 @@ class FindTest extends TestCase
         $outputPath = $this->getFilePath('forwardDirection/correctOutput.json');
         $dataPath = $this->getFilePath('forwardDirection/testData.json');
 
-        $expected = file_get_contents($outputPath);
+        $expected = json_decode(file_get_contents($outputPath), true);
         $data = json_decode(file_get_contents($dataPath), true);
 
         $request = [1, 4];
@@ -37,7 +37,7 @@ class FindTest extends TestCase
         $outputPath = $this->getFilePath('nextArrivalesTomorrow/correctOutput.json');
         $dataPath = $this->getFilePath('forwardDirection/testData.json');
 
-        $expected = file_get_contents($outputPath);
+        $expected = json_decode(file_get_contents($outputPath), true);
         $data = json_decode(file_get_contents($dataPath), true);
 
         $request = [1, 4];
