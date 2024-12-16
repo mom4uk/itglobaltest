@@ -1,5 +1,5 @@
 ## Ссылка на тестовое
-    [Тестовое](https://github.com/Hexlet/ru-test-assignments/blob/main/backend/ItGlobal/README.md)
+[Тестовое](https://github.com/Hexlet/ru-test-assignments/blob/main/backend/ItGlobal/README.md)
 
 ## Ссылка на dump
 [Ссылка на dump](https://github.com/mom4uk/itglobaltest/blob/master/dumpfile.sql)
