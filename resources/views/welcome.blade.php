@@ -78,8 +78,8 @@
             <div class="mb-3">
                 <label for="is_direction_forward" class="form-label">Направление:</label>
                 <select id="is_direction_forward" name="is_direction_forward" class="form-select">
-                    <option value="1" {{ old('is_direction_forward') == '1' ? 'selected' : '' }}>Прямо</option>
-                    <option value="0" {{ old('is_direction_forward') == '0' ? 'selected' : '' }}>Обратно</option>
+                    <option value="1" {{ old('is_direction_forward') === "1" ? 'selected' : '' }}>Прямо</option>
+                    <option value="0" {{ old('is_direction_forward') === "0" ? 'selected' : '' }}>Обратно</option>
                 </select>
             </div>
 
