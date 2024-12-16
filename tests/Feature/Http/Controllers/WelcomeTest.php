@@ -7,7 +7,6 @@ use Tests\TestCase;
 
 class WelcomeTest extends TestCase
 {
-
     public function testWelcome(): void
     {
         $response = $this->get('/');
