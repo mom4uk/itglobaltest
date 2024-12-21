@@ -6,9 +6,9 @@ use App\Models\RouteStopSequence;
 
 class RouteService
 {
-    public function getNormalizedRouteData($routeIds)
+    public function getNormalizedRouteData($routeIds): array
     {
-        return array_map(function($id) {
+        return array_map(function ($id) {
             $routeData = RouteStopSequence::
                 select(
                     'route_stop_sequences.route_id',
@@ -32,7 +32,7 @@ class RouteService
         }, $routeIds);
     }
 
-    public function getSortedSequenceData($routeId)
+    public function getSortedSequenceData($routeId): array
     {
         $stopSequencesData = RouteStopSequence::select(
             'route_stop_sequences.route_id',
@@ -49,8 +49,8 @@ class RouteService
         $sorted = collect($stopSequencesData)->sortBy('id')->values()->toArray();
         return ['routeId' => $routeId, 'data' => $sorted];
     }
-    
-    public function updateRouteStops($routeId, $stopIds, $isDirectionForward)
+
+    public function updateRouteStops($routeId, $stopIds, $isDirectionForward): void
     {
         $sequence = $isDirectionForward ? 'sequence_forward' : 'sequence_backward';
         foreach ($stopIds as $index => $stopId) {

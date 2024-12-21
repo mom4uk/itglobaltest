@@ -8,12 +8,12 @@ class UpdateRequest extends FormRequest
 {
     protected $errorBag = 'updateErrors';
 
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             'route_id' => 'required|integer|exists:routes,id',
@@ -22,7 +22,7 @@ class UpdateRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'route_id.required' => 'Поле "ID маршрута" обязательно.',
@@ -35,4 +35,3 @@ class UpdateRequest extends FormRequest
         ];
     }
 }
-

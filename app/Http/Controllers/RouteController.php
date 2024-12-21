@@ -7,6 +7,8 @@ use App\Models\RouteStopSequence;
 use App\Services\RouteService;
 use App\Http\Requests\FindRequest;
 use App\Http\Requests\UpdateRequest;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class RouteController extends Controller
 {
@@ -17,17 +19,17 @@ class RouteController extends Controller
         $this->routeService = $routeService;
     }
 
-    public function index()
+    public function index(): View
     {
         $routesRaw = Route::select('id')
             ->get()
             ->toArray();
         $routesNums = array_map(fn($item) => $item['id'], $routesRaw);
         $routes = array_map([$this->routeService, 'getSortedSequenceData'], $routesNums);
-        return view('welcome', compact('routes'));
+        return view('welcome', compact('routes', 'routesNums'));
     }
 
-    public function find(FindRequest $request)
+    public function find(FindRequest $request): RedirectResponse
     {
         $req = [$request->from, $request->to];
 
@@ -45,7 +47,7 @@ class RouteController extends Controller
         return redirect('/')->with(['buses' => $buses]);
     }
 
-    public function update(UpdateRequest $request)
+    public function update(UpdateRequest $request): RedirectResponse
     {
         $stopIds = explode(',', $request->stop_ids);
         $this->routeService->updateRouteStops($request->route_id, $stopIds, $request->is_direction_forward);

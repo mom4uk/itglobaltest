@@ -8,12 +8,12 @@ class FindRequest extends FormRequest
 {
     protected $errorBag = 'findErrors';
 
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             'from' => 'required|integer|different:to',
@@ -21,7 +21,7 @@ class FindRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'from.required' => 'Поле "Откуда" обязательно.',
@@ -30,4 +30,3 @@ class FindRequest extends FormRequest
         ];
     }
 }
-

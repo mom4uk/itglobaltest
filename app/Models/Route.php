@@ -37,7 +37,7 @@ class Route extends Model
         return $result;
     }
 
-    private function getFullInfo($routesInfo, $reqId, $data)
+    private function getFullInfo($routesInfo, $reqId, $data): array
     {
         [$from, $to] = $reqId;
 
@@ -52,14 +52,14 @@ class Route extends Model
         return ['from' => $fromNameStop, 'to' => $toNameStop, 'buses' => $routesInfo];
     }
 
-    private function getLastStop($coll, $directionForward)
+    private function getLastStop($coll, $directionForward): string
     {
         $sequence = $directionForward ? 'sequence_forward' : 'sequence_backward';
         $sorted = $coll->sortBy($sequence);
         return $sorted->last()['name'];
     }
 
-    private function getRouteInfo($busNumber, $arrivales, $lastStop)
+    private function getRouteInfo($busNumber, $arrivales, $lastStop): array
     {
         return [
             'route' => "Автобус №{$busNumber} в сторону ост. {$lastStop}",
@@ -67,7 +67,7 @@ class Route extends Model
         ];
     }
 
-    private function getNextArrivales($arrivales)
+    private function getNextArrivales($arrivales): array
     {
         $currentTime = Carbon::now('Europe/Moscow')->format('H:i');
         $currentTimestamp = strtotime($currentTime);
@@ -82,7 +82,7 @@ class Route extends Model
         return $result;
     }
 
-    private function getArrivales($coll, $initialTime, $directionForward)
+    private function getArrivales($coll, $initialTime, $directionForward): array
     {
         $startTime = Carbon::parse($initialTime)->format('H:i');
         $result = [$startTime];
@@ -99,7 +99,7 @@ class Route extends Model
         return $result;
     }
 
-    private function isRouteForward($coll, $req)
+    private function isRouteForward($coll, $req): bool
     {
         [$from, $to] = $req;
         $fromSeq = $coll->firstWhere('stop_id', $from)['sequence_forward'];
