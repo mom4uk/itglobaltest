@@ -67,7 +67,11 @@
 
             <div class="mb-3">
                 <label for="route_id" class="form-label">ID маршрута:</label>
-                <input type="text" id="route_id" name="route_id" class="form-control" value="{{ old('route_id') }}" placeholder="Введите ID маршрута">
+                <select id="route_id" name="route_id" class="form-select">
+                    @foreach ($routesNums as $num)
+                        <option value="{{ $num }}">{{ $num }}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="mb-3">
