@@ -42,6 +42,12 @@ return [
             'synchronous' => null,
         ],
 
+        'sqlite_testing' => [
+            'driver'   => 'sqlite',
+            'database' => env('DB_DATABASE', database_path('postgres')),
+            'prefix'   => '',
+        ],
+
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DB_URL'),

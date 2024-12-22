@@ -15,6 +15,9 @@ start-app:
 install:
 	composer install
 
+db-prepare-tests:
+	php artisan migrate:fresh --seed --database=sqlite
+
 db-prepare:
 	php artisan migrate:fresh --seed
 

@@ -19,7 +19,11 @@ return new class extends Migration
             $table->integer('sequence_backward')->nullable();
             $table->timestamps();
 
-            $table->primary(['id', 'route_id', 'stop_id']);
+            if (Schema::getConnection()->getDriverName() !== 'sqlite') {
+                $table->primary(['id', 'route_id', 'stop_id']);
+            } else {
+                $table->unique(['id', 'route_id', 'stop_id']);
+            }
         });
     }
 
