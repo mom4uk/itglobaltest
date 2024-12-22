@@ -53,10 +53,51 @@ class RouteService
     public function updateRouteStops($routeId, $stopIds, $isDirectionForward): void
     {
         $sequence = $isDirectionForward ? 'sequence_forward' : 'sequence_backward';
+    
+        $existingStops = RouteStopSequence::where('route_id', $routeId)
+            ->pluck('stop_id')
+            ->toArray();
+    
+        $stopsToRemove = array_diff($existingStops, $stopIds);
+    
+        $this->removeStops($routeId, $stopsToRemove, $sequence);
+    
         foreach ($stopIds as $index => $stopId) {
-            RouteStopSequence::where('route_id', $routeId)
-                ->where('stop_id', $stopId)
-                ->update([$sequence => $index]);
+            if (in_array($stopId, $existingStops)) {
+                $this->updateStop($routeId, $stopId, $sequence, $index);
+            } else {
+                $this->addStop($routeId, $stopId, $sequence, $index);
+            }
         }
     }
+    
+    private function removeStops($routeId, $stopsToRemove, $sequence): void
+    {
+        if (!empty($stopsToRemove)) {
+            RouteStopSequence::where('route_id', $routeId)
+                ->whereIn('stop_id', $stopsToRemove)
+                ->update([$sequence => null]);
+    
+            RouteStopSequence::whereNull('sequence_forward')
+                ->whereNull('sequence_backward')
+                ->delete();
+        }
+    }
+    
+    private function updateStop($routeId, $stopId, $sequence, $index): void
+    {
+        RouteStopSequence::where('route_id', $routeId)
+            ->where('stop_id', $stopId)
+            ->update([$sequence => $index]);
+    }
+    
+    private function addStop($routeId, $stopId, $sequence, $index): void
+    {
+        RouteStopSequence::create([
+            'route_id' => $routeId,
+            'stop_id' => $stopId,
+            $sequence => $index,
+        ]);
+    }
+    
 }
