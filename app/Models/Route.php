@@ -73,28 +73,30 @@ class Route extends Model
         $currentTimestamp = strtotime($currentTime);
 
         $closestTime = collect($arrivales)
-            ->sortBy(fn($time) => abs(strtotime($time) - $currentTimestamp))
+            ->filter(fn($time) => strtotime($time) >= $currentTimestamp)
+            ->sortBy(fn($time) => abs(strtotime($time) - $currentTimestamp)) // ???
             ->first();
         $closestTimeIndex = array_search($closestTime, $arrivales);
-        $result = strtotime($closestTime) < $currentTimestamp
-            ? ['Next stops will be tomorrow']
-            : array_slice($arrivales, $closestTimeIndex, 3);
+
+        $result = $closestTime
+            ? array_slice($arrivales, $closestTimeIndex, 3)
+            : ['The next arrival will be tomorrow.'];
         return $result;
     }
 
-    private function getArrivales($coll, $initialTime, $directionForward): array
+    private function getArrivales($coll, $initialTime): array
     {
-        $startTime = Carbon::parse($initialTime)->format('H:i');
-        $result = [$startTime];
-        $stops = $directionForward ? $coll->all() : $coll->reverse()->all();
-        $minutesBetweenStops = $coll->value('minutes_between_stops');
+        $numberOfStops = $coll->count();
+        $routeTime = $coll->first()['half_route_time'];
+        
+        $start = Carbon::parse($initialTime);
+        $end = Carbon::parse($initialTime)->addHours($routeTime);
+        $interval = $start->diffInSeconds($end) / ($numberOfStops - 1);
 
-        for ($i = 1; $i <= count($stops); $i += 1) {
-            $date = $result[$i - 1];
-            $newDate = Carbon::parse($date)
-                ->addMinutes($minutesBetweenStops)
-                ->format('H:i');
-            $result[] = $newDate;
+        $result = [];
+
+        for ($i = 0; $i < $numberOfStops; $i += 1) {
+            $result[] = $start->copy()->addSeconds($interval * $i)->format('H:i');
         }
         return $result;
     }

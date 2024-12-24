@@ -19,7 +19,7 @@ class RouteService
                     'buses.number as bus_number',
                     'routes.initial_stop_departure_time',
                     'routes.final_stop_departure_time',
-                    'routes.minutes_between_stops'
+                    'routes.half_route_time'
                 )
                 ->join('stops', 'route_stop_sequences.stop_id', '=', 'stops.id')
                 ->join('routes', 'route_stop_sequences.route_id', '=', 'routes.id')

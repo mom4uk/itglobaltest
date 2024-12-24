@@ -16,19 +16,19 @@ class DatabaseSeeder extends Seeder
         // routes
 
         DB::table('routes')->insert([
-            'minutes_between_stops' => 42,
+            'half_route_time' => 5,
             'initial_stop_departure_time' => '2001-02-16 09:00:00',
             'final_stop_departure_time' => '2001-02-16 14:00:00'
         ]);
 
         DB::table('routes')->insert([
-            'minutes_between_stops' => 39,
+            'half_route_time' => 5,
             'initial_stop_departure_time' => '2001-02-16 10:00:00',
             'final_stop_departure_time' => '2001-02-16 15:00:00'
         ]);
 
         DB::table('routes')->insert([
-            'minutes_between_stops' => 34,
+            'half_route_time' => 5,
             'initial_stop_departure_time' => '2001-02-16 10:00:00',
             'final_stop_departure_time' => '2001-02-16 15:00:00'
         ]);
@@ -207,7 +207,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        // stops
+        // stops of the route 1
 
         DB::table('stops')->insert([
             'name' => 'ул.Попова'
@@ -237,7 +237,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Больница №7'
         ]);
         
-        // route 2
+        // stops of the route 2
 
         DB::table('stops')->insert([
             'name' => 'ул.Знамени'
@@ -259,7 +259,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'ул.Бора'
         ]);
 
-        // route 3
+        // stops of the route 3
 
         DB::table('stops')->insert([
             'name' => 'ул.Герцена'

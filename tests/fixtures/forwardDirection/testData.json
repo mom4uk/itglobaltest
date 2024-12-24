@@ -11,7 +11,7 @@
           "bus_number": 12,
           "initial_stop_departure_time": "2001-02-16 09:00:00",
           "final_stop_departure_time": "2001-02-16 14:00:00",
-          "minutes_between_stops": 42
+          "half_route_time": 5
         },
         {
           "route_id": 1,
@@ -22,7 +22,7 @@
           "bus_number": 12,
           "initial_stop_departure_time": "2001-02-16 09:00:00",
           "final_stop_departure_time": "2001-02-16 14:00:00",
-          "minutes_between_stops": 42
+          "half_route_time": 5
         },
         {
           "route_id": 1,
@@ -33,7 +33,7 @@
           "bus_number": 12,
           "initial_stop_departure_time": "2001-02-16 09:00:00",
           "final_stop_departure_time": "2001-02-16 14:00:00",
-          "minutes_between_stops": 42
+          "half_route_time": 5
         },
         {
           "route_id": 1,
@@ -44,7 +44,7 @@
           "bus_number": 12,
           "initial_stop_departure_time": "2001-02-16 09:00:00",
           "final_stop_departure_time": "2001-02-16 14:00:00",
-          "minutes_between_stops": 42
+          "half_route_time": 5
         },
         {
           "route_id": 1,
@@ -55,7 +55,7 @@
           "bus_number": 12,
           "initial_stop_departure_time": "2001-02-16 09:00:00",
           "final_stop_departure_time": "2001-02-16 14:00:00",
-          "minutes_between_stops": 42
+          "half_route_time": 5
         },
         {
           "route_id": 1,
@@ -66,7 +66,7 @@
           "bus_number": 12,
           "initial_stop_departure_time": "2001-02-16 09:00:00",
           "final_stop_departure_time": "2001-02-16 14:00:00",
-          "minutes_between_stops": 42
+          "half_route_time": 5
         },
         {
           "route_id": 1,
@@ -77,7 +77,7 @@
           "bus_number": 12,
           "initial_stop_departure_time": "2001-02-16 09:00:00",
           "final_stop_departure_time": "2001-02-16 14:00:00",
-          "minutes_between_stops": 42
+          "half_route_time": 5
         }
       ]
     },
@@ -93,7 +93,7 @@
           "bus_number": 46,
           "initial_stop_departure_time": "2001-02-16 10:00:00",
           "final_stop_departure_time": "2001-02-16 15:00:00",
-          "minutes_between_stops": 39
+          "half_route_time": 5
         },
         {
           "route_id": 2,
@@ -104,7 +104,7 @@
           "bus_number": 46,
           "initial_stop_departure_time": "2001-02-16 10:00:00",
           "final_stop_departure_time": "2001-02-16 15:00:00",
-          "minutes_between_stops": 39
+          "half_route_time": 5
         },
         {
           "route_id": 2,
@@ -115,7 +115,7 @@
           "bus_number": 46,
           "initial_stop_departure_time": "2001-02-16 10:00:00",
           "final_stop_departure_time": "2001-02-16 15:00:00",
-          "minutes_between_stops": 39
+          "half_route_time": 5
         },
         {
           "route_id": 2,
@@ -126,7 +126,7 @@
           "bus_number": 46,
           "initial_stop_departure_time": "2001-02-16 10:00:00",
           "final_stop_departure_time": "2001-02-16 15:00:00",
-          "minutes_between_stops": 39
+          "half_route_time": 5
         },
         {
           "route_id": 2,
@@ -137,7 +137,7 @@
           "bus_number": 46,
           "initial_stop_departure_time": "2001-02-16 10:00:00",
           "final_stop_departure_time": "2001-02-16 15:00:00",
-          "minutes_between_stops": 39
+          "half_route_time": 5
         },
         {
           "route_id": 2,
@@ -148,7 +148,7 @@
           "bus_number": 46,
           "initial_stop_departure_time": "2001-02-16 10:00:00",
           "final_stop_departure_time": "2001-02-16 15:00:00",
-          "minutes_between_stops": 39
+          "half_route_time": 5
         },
         {
           "route_id": 2,
@@ -159,7 +159,7 @@
           "bus_number": 46,
           "initial_stop_departure_time": "2001-02-16 10:00:00",
           "final_stop_departure_time": "2001-02-16 15:00:00",
-          "minutes_between_stops": 39
+          "half_route_time": 5
         }
       ]
     }

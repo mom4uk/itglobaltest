@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('routes', function (Blueprint $table) {
             $table->id();
-            $table->integer('minutes_between_stops');
+            $table->integer('half_route_time');
             $table->timestamp('initial_stop_departure_time');
             $table->timestamp('final_stop_departure_time');
         });

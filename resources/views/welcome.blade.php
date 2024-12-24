@@ -29,7 +29,6 @@
 
             <button type="submit" class="btn btn-primary w-100">Найти</button>
         </form>
-
         @if (session('buses'))
             <div class="mt-4">
                 <h4 class="text-success">Результаты поиска:</h4>
