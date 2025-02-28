@@ -37,7 +37,7 @@ jobs:
       - name: Run tests
         run: make tests
   coverage:
-    needs: [ test ]
+    needs: [ build ]
     name: coverage
     runs-on: ubuntu-latest
     steps:
