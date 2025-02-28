@@ -49,8 +49,7 @@ class RouteController extends Controller
 
     public function update(UpdateRequest $request): RedirectResponse
     {
-        $stopIds = explode(',', $request->stop_ids);
-        $this->routeService->updateRouteStops($request->route_id, $stopIds, $request->is_direction_forward);
+        $this->routeService->updateRouteStops($request->route_id, $request->stop_ids, $request->is_direction_forward);
         return redirect('/')->with('success', 'Успешно обновлено');
     }
 }

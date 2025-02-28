@@ -52,17 +52,19 @@ class RouteService
 
     public function updateRouteStops($routeId, $stopIds, $isDirectionForward): void
     {
+        $splitedStops = explode(',', $stopIds);
+
         $sequence = $isDirectionForward ? 'sequence_forward' : 'sequence_backward';
     
         $existingStops = RouteStopSequence::where('route_id', $routeId)
             ->pluck('stop_id')
             ->toArray();
     
-        $stopsToRemove = array_diff($existingStops, $stopIds);
+        $stopsToRemove = array_diff($existingStops, $splitedStops);
     
         $this->removeStops($routeId, $stopsToRemove, $sequence);
     
-        foreach ($stopIds as $index => $stopId) {
+        foreach ($splitedStops as $index => $stopId) {
             if (in_array($stopId, $existingStops)) {
                 $this->updateStop($routeId, $stopId, $sequence, $index);
             } else {
