@@ -65,7 +65,7 @@ class RouteService
         $this->removeStops($routeId, $stopsToRemove, $sequence);
 
         foreach ($splitedStops as $index => $stopId) {
-            if (in_array($stopId, $existingStops)) {
+            if (in_array($stopId, $existingStops, true)) {
                 $this->updateStop($routeId, $stopId, $sequence, $index);
             } else {
                 $this->addStop($routeId, $stopId, $sequence, $index);

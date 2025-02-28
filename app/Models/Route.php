@@ -63,7 +63,7 @@ class Route extends Model
     {
         return [
             'route' => "Автобус №{$busNumber} в сторону ост. {$lastStop}",
-            'next_arrivals' => $arrivales
+            'next_arrivals' => $arrivales,
         ];
     }
 
@@ -74,9 +74,9 @@ class Route extends Model
 
         $closestTime = collect($arrivales)
             ->filter(fn($time) => strtotime($time) >= $currentTimestamp)
-            ->sortBy(fn($time) => abs(strtotime($time) - $currentTimestamp)) // ???
+            ->sortBy(fn($time) => abs(strtotime($time) - $currentTimestamp))
             ->first();
-        $closestTimeIndex = array_search($closestTime, $arrivales);
+        $closestTimeIndex = array_search($closestTime, $arrivales, true);
 
         $result = $closestTime
             ? array_slice($arrivales, $closestTimeIndex, 3)
