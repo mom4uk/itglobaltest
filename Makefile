@@ -7,6 +7,9 @@ tests:
 	php artisan test
 
 lint:
+	composer exec phpcs -v app
+
+lint-fix:
 	composer exec --verbose phpcbf -- --standard=PSR12 app tests
 
 start-app:
