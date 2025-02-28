@@ -16,7 +16,7 @@ start-app:
 	php artisan serve --host 0.0.0.0 --port ${PORT}
 
 test-coverage:
-	php ./vendor/bin/phpunit --coverage-clover coverage.xml
+	XDEBUG_MODE=coverage composer exec --verbose phpunit tests -- --coverage-clover build/logs/clover.xml
 
 install:
 	composer install
