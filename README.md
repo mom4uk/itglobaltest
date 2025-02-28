@@ -1,3 +1,7 @@
+[![Github Actions Status](https://github.com/mom4uk/itglobaltest/workflows/CI/badge.svg)](https://github.com/mom4uk/itglobaltest/actions)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c3805200397627b3fc56/maintainability)](https://codeclimate.com/github/mom4uk/itglobaltest/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/c3805200397627b3fc56/test_coverage)](https://codeclimate.com/github/mom4uk/itglobaltest/test_coverage)
+
 ## Ссылка на тестовое
 [Тестовое](https://github.com/Hexlet/ru-test-assignments/blob/main/backend/ItGlobal/README.md)
 
