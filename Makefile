@@ -15,6 +15,9 @@ lint-fix:
 start-app:
 	php artisan serve --host 0.0.0.0 --port ${PORT}
 
+test-coverage:
+	php ./vendor/bin/phpunit --coverage-clover coverage.xml
+
 install:
 	composer install
 
