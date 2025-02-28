@@ -88,7 +88,7 @@ class Route extends Model
     {
         $numberOfStops = $coll->count();
         $routeTime = $coll->first()['half_route_time'];
-        
+
         $start = Carbon::parse($initialTime);
         $end = Carbon::parse($initialTime)->addHours($routeTime);
         $interval = $start->diffInSeconds($end) / ($numberOfStops - 1);
